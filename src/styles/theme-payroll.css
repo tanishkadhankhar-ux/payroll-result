@@ -1,0 +1,28 @@
+/* Payroll journey theme. Brand inputs only — atlas.css derives the rest.
+   Load after atlas.css and set data-theme="payroll" on <html>. */
+
+:root,
+html[data-theme="payroll"] {
+  --brand-action: #16151a;
+  --brand-accent: #3157e6;
+  --brand-success: #1f8a62;
+  --brand-danger: #cf3f2a;
+  --brand-rating: #e2a100;
+  --brand-warning: var(--brand-rating);
+  --brand-neutral-hue: 260;
+  --brand-callout-hue: 37;
+  --brand-typeface: var(--font-jakarta);
+  --brand-type-scale: 1;
+  --brand-radius-scale: 1;
+  --brand-space-scale: 1;
+  --brand-motion-scale: 1;
+  --brand-ease: cubic-bezier(0.3, 0.7, 0.3, 1);
+
+  --paper: #f7f3f0;
+  --cream: #fbf6ee;
+  --ribbon: #3157e6;
+  --serif: var(--font-schnyder), "Iowan Old Style", Palatino, Georgia, serif;
+  --gold-bg: #f3d48a;
+  --gold-ink: #5c3b04;
+  --navy: #15245c;
+}
