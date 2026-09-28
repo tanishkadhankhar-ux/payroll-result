@@ -14,7 +14,6 @@ export function NeedsCard() {
             <img src="/hero/specialist.webp" alt="" />
             <div className="voice-copy">
               <h3>{voice.title}</h3>
-              <p>{voice.lead}</p>
               <p>{voice.body}</p>
             </div>
           </div>

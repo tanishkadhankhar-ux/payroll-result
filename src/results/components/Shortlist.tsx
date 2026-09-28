@@ -36,13 +36,19 @@ export function Shortlist({
             <div className="card-id">
               <span className="rank">{index + 1}</span>
               <PartnerMark id={partner.id} name="" />
-              <Rating score={partner.score} stars={partner.stars} label={partner.verdict} compact stacked />
+              {partner.score != null && partner.stars != null ? (
+                <Rating score={partner.score} stars={partner.stars} label={partner.verdict} compact stacked />
+              ) : null}
             </div>
             <h3 className={index === 0 ? undefined : "is-link"}>{partner.name}</h3>
-            <p className="check">
-              <Check aria-hidden />
-              {partner.check}
-            </p>
+            <div className="checks">
+              {partner.checks.map((point) => (
+                <p className="check" key={point}>
+                  <Check aria-hidden />
+                  {point}
+                </p>
+              ))}
+            </div>
             <Button variant="primary" full className="card-cta" onClick={onPricing}>
               {pricingCtas[index]}
             </Button>

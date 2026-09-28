@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/kit/Button";
-import { hero, needs } from "@/results/data";
+import { hero, needs, topMatch } from "@/results/data";
 
 export function ResultsHero({ onPricing }: { onPricing: () => void }) {
   const covered = Number(needs.covered);
@@ -12,10 +12,10 @@ export function ResultsHero({ onPricing }: { onPricing: () => void }) {
       <h1 id="welcome-title">{hero.title}</h1>
       <p className="welcome-lead">{hero.lead}</p>
       <p className="welcome-cover">
-        SurePayroll covers all {covered} {needLabel} you named.
+        {topMatch.name} covers all {covered} {needLabel} you named.
       </p>
       <Button variant="primary" className="welcome-pricing" onClick={onPricing}>
-        Get SurePayroll pricing
+        Get {topMatch.name} pricing
         <ArrowRight aria-hidden />
       </Button>
     </section>

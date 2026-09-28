@@ -95,7 +95,7 @@ export function CompareList({ onPricing }: { onPricing: () => void }) {
                   <span className="compare-word">{column.name}</span>
                 )}
                 <h3 className="compare-mobile-name">{column.name}</h3>
-                {rated ? (
+                {rated?.score != null && rated.stars != null ? (
                   <Rating score={rated.score} stars={rated.stars} label={rated.verdict} compact stacked />
                 ) : null}
                 <Button

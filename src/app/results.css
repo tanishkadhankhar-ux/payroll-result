@@ -1,4 +1,5 @@
 .page {
+  --page-gutter: max(24px, calc((100% - 1120px) / 2));
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
@@ -44,7 +45,7 @@
     linear-gradient(90deg, rgba(8, 8, 12, 0.92) 0%, rgba(12, 10, 18, 0.72) 46%, rgba(18, 14, 28, 0.28) 100%),
     url("/hero/results-welcome.jpg") center right / cover no-repeat;
   color: #fff;
-  padding: 72px 8vw 64px;
+  padding: 72px var(--page-gutter) 64px;
 }
 
 .eyebrow {
@@ -58,7 +59,7 @@
 
 .welcome h1 {
   margin: 0;
-  max-width: 16ch;
+  max-width: none;
   font-family: var(--serif);
   font-weight: 700;
   font-size: clamp(40px, 4.8vw, 58px);
@@ -67,7 +68,7 @@
 }
 
 .welcome-lead {
-  max-width: 46ch;
+  max-width: none;
   margin: 18px 0 0;
   font-size: 16px;
   line-height: 1.45;
@@ -268,9 +269,15 @@
 }
 
 .match {
-  padding: 0 0 20px;
+  align-self: start;
+  padding: 0;
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(22, 21, 26, 0.12);
+  border-color: var(--line);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 60%, transparent),
+    0 1px 4px color-mix(in srgb, var(--ink) 5%, transparent),
+    0 16px 40px -12px color-mix(in srgb, var(--ink) 22%, transparent);
 }
 
 .match-ribbon {
@@ -279,12 +286,12 @@
   align-items: center;
   gap: 12px;
   margin: 0;
-  padding: 11px 18px;
-  background: var(--ribbon);
+  padding: 12px 20px;
+  background: #2448d8;
   color: #fff;
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -294,29 +301,27 @@
 
 .match-ribbon span:last-child {
   flex: none;
+  font-weight: 600;
   text-align: right;
+  color: color-mix(in srgb, #fff 78%, transparent);
 }
 
 .match-body {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 18px 22px 0;
+  align-items: stretch;
+  padding: 20px;
 }
 
 .match-body > .partner-mark {
+  --logo-h: 34px;
+  --logo-reference: 3;
   align-self: flex-start;
-  width: 168px;
+  width: auto;
   max-width: 100%;
-  height: 28px;
-}
-
-.match-body > .btn,
-.match-body > .fit,
-.match-body > .atlas-rating,
-.match-body > .check {
-  align-self: stretch;
+  height: calc(var(--logo-h) * sqrt(var(--logo-reference) / var(--logo-ratio, 3)));
+  object-fit: contain;
+  object-position: left center;
 }
 
 .partner-mark {
@@ -325,48 +330,33 @@
   max-width: none;
 }
 
-.atlas-rating {
-  gap: 10px;
+.match .atlas-rating {
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
 }
 
-.atlas-rating-score {
-  font-size: 32px;
+.match .atlas-rating-score {
+  font-size: 30px;
   letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.match .atlas-rating-star {
+  width: 14px;
+  height: 14px;
+}
+
+.match .atlas-rating-label {
+  letter-spacing: 0.08em;
 }
 
 .atlas-rating.is-compact .atlas-rating-score {
   font-size: 22px;
 }
 
-.atlas-rating-figure {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.atlas-rating-body {
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-}
-
-.atlas-rating-stars {
-  width: 78px;
-  height: 14px;
-}
-
-.atlas-rating-star {
-  width: 14px;
-  height: 14px;
-}
-
-.atlas-rating-row {
-  gap: 2px;
-}
-
-.atlas-rating-label {
-  letter-spacing: 0.08em;
-  color: var(--muted);
+.match .fit {
+  margin-top: 20px;
 }
 
 .fit-label {
@@ -374,16 +364,17 @@
   justify-content: space-between;
   align-items: baseline;
   gap: 12px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .fit-label strong {
-  color: var(--ribbon);
-  font-size: 16px;
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -391,7 +382,7 @@
   margin-top: 8px;
   height: 6px;
   border-radius: 999px;
-  background: #d9e2fb;
+  background: var(--line);
   overflow: hidden;
 }
 
@@ -399,13 +390,14 @@
   display: block;
   width: 100%;
   height: 100%;
-  background: var(--ribbon);
+  border-radius: 999px;
+  background: var(--accent);
 }
 
 .fit-note {
   margin: 8px 0 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12.5px;
 }
 
 .check {
@@ -429,6 +421,29 @@
   color: var(--brand-success);
 }
 
+.match .check {
+  margin-top: 16px;
+  color: var(--ink);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.match .check svg {
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--success-ink, var(--brand-success));
+}
+
+.match-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
 .match .btn,
 .card .btn {
   min-height: 48px;
@@ -436,23 +451,52 @@
   justify-content: center;
 }
 
-.btn.shine {
-  position: relative;
-  overflow: hidden;
+.match-actions .btn.primary {
+  border-color: var(--action);
+  background-color: var(--action);
+  background-image: linear-gradient(
+    102deg,
+    transparent 56%,
+    color-mix(in srgb, #2448d8 35%, transparent) 68%,
+    color-mix(in srgb, #fff 82%, transparent) 76%,
+    color-mix(in srgb, #2448d8 88%, transparent) 83%,
+    color-mix(in srgb, #fff 38%, transparent) 88%,
+    transparent 98%
+  );
+  background-repeat: no-repeat;
+  background-size: 165% 100%;
+  animation: campaign-sweep 1.5s cubic-bezier(0.3, 0.7, 0.3, 1) infinite alternate;
 }
 
-.btn.shine::after {
-  content: "";
-  position: absolute;
-  inset: 0 0 0 48%;
-  background: linear-gradient(
-    100deg,
-    transparent 0%,
-    rgba(49, 87, 230, 0.05) 18%,
-    rgba(80, 130, 255, 0.85) 72%,
-    rgba(170, 200, 255, 0.95) 100%
+.match-actions .btn.primary:hover {
+  background-color: color-mix(in srgb, var(--action) 91%, #fff);
+  background-image: linear-gradient(
+    102deg,
+    transparent 56%,
+    color-mix(in srgb, #2448d8 35%, transparent) 68%,
+    color-mix(in srgb, #fff 82%, transparent) 76%,
+    color-mix(in srgb, #2448d8 88%, transparent) 83%,
+    color-mix(in srgb, #fff 38%, transparent) 88%,
+    transparent 98%
   );
-  pointer-events: none;
+  filter: none;
+}
+
+@keyframes campaign-sweep {
+  0% {
+    background-position: 42%;
+  }
+
+  to {
+    background-position: 88%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .match-actions .btn.primary {
+    background-position: 70%;
+    animation: none;
+  }
 }
 
 .shortlist {
@@ -513,6 +557,12 @@
   align-self: flex-start;
 }
 
+.card .atlas-badge:not(.is-accent) {
+  background: #b87808;
+  color: #3a1400;
+  font-weight: 700;
+}
+
 .card-id {
   display: flex;
   align-items: center;
@@ -535,23 +585,28 @@
 
 .card-id .atlas-rating.is-stacked {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 2px;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px 6px;
   margin-left: auto;
   min-width: 0;
   max-width: 100%;
   text-align: right;
 }
 
-.card-id .atlas-rating-figure {
+.card-id .atlas-rating.is-stacked .atlas-rating-rule {
+  display: none;
+}
+
+.card-id .atlas-rating.is-stacked .atlas-rating-body {
+  display: contents;
+}
+
+.card-id .atlas-rating.is-stacked .atlas-rating-line {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex: 1 0 100%;
   justify-content: flex-end;
-  gap: 6px;
-  max-width: 100%;
 }
 
 .card-id .atlas-rating.is-stacked .atlas-rating-score {
@@ -589,8 +644,15 @@
   text-underline-offset: 3px;
 }
 
-.card .check {
+.card .checks {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card .check {
+  flex: none;
 }
 
 .card-cta {
@@ -964,70 +1026,155 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: nowrap;
   margin-top: 0;
-  padding: 12px 24px;
-  background: var(--surface);
-  border-top: var(--bw-hairline) solid var(--line);
-  border-bottom: 0;
-  box-shadow: 0 -12px 32px -16px color-mix(in srgb, var(--ink) 22%, transparent);
+  padding: 10px var(--page-gutter);
+  background: #3858d8;
+  color: #fff;
+  border: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .dock-row {
   display: flex;
   align-items: center;
-  gap: 18px;
-  flex: 1 1 auto;
+  gap: 10px;
+  flex: 1 1 0;
+  width: 0;
   min-width: 0;
   overflow-x: auto;
   flex-wrap: nowrap;
+  scrollbar-width: none;
+}
+
+.dock-row::-webkit-scrollbar {
+  display: none;
 }
 
 .dock-lead {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex: none;
 }
 
-.dock-lead .partner-mark {
-  height: 18px;
+.dock-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 8px;
+  background: #fff;
+  border-radius: 999px;
+  flex: none;
+}
+
+.dock-logo .partner-mark {
+  display: block;
+  height: 16px;
   width: auto;
-  max-width: 120px;
+  max-width: 108px;
+}
+
+.dock-logo .partner-word {
+  color: #16151a;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 .dock-fit {
   margin: 0;
-  color: var(--muted);
-  font-size: 14px;
+  color: #fff;
+  font-size: 14.5px;
   font-weight: 650;
   white-space: nowrap;
 }
 
-.dock .atlas-badge {
+.dock .atlas-badge,
+.dock .atlas-badge.is-accent {
   flex: none;
   white-space: nowrap;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dock .atlas-badge.is-accent {
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 13.5px;
+  font-weight: 650;
+}
+
+.dock .atlas-badge-mark,
+.dock .atlas-badge-mark svg {
+  color: #fff;
 }
 
 .dock .btn.dock-pricing {
   flex: none;
-  background: var(--ribbon);
-  border-color: var(--ribbon);
-  color: #fff;
-  min-height: 44px;
+  min-height: 48px;
+  border-radius: 12px;
   padding-inline: 18px;
-  border-radius: 10px;
+  border-color: var(--action);
+  background-color: var(--action);
+  background-image: none;
+  color: #fff;
+  animation: none;
+}
+
+.dock .btn.dock-pricing.is-gloss {
+  background-image: linear-gradient(
+    102deg,
+    transparent 56%,
+    color-mix(in srgb, #2448d8 35%, transparent) 68%,
+    color-mix(in srgb, #fff 82%, transparent) 76%,
+    color-mix(in srgb, #2448d8 88%, transparent) 83%,
+    color-mix(in srgb, #fff 38%, transparent) 88%,
+    transparent 98%
+  );
+  background-repeat: no-repeat;
+  background-size: 165% 100%;
+  animation: campaign-sweep 1.5s cubic-bezier(0.3, 0.7, 0.3, 1) infinite alternate;
 }
 
 .dock .btn.dock-pricing:hover {
-  background: #2448d8;
-  border-color: #2448d8;
+  background-color: color-mix(in srgb, var(--action) 91%, #fff);
+  filter: none;
 }
 
 .dock .btn.dock-pricing svg {
   width: 16px;
   height: 16px;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock .btn.dock-pricing.is-gloss {
+    background-position: 70%;
+    animation: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .dock {
+    padding-inline: 12px;
+    gap: 8px;
+  }
+
+  .dock-fit {
+    display: none;
+  }
 }
 
 .foot-actions {
@@ -1140,7 +1287,7 @@
   }
 
   .welcome h1 {
-    max-width: 14ch;
+    max-width: none;
     font-size: 34px;
   }
 
@@ -1253,8 +1400,14 @@
     gap: 2px;
   }
 
-  .compare-mobile .atlas-rating-figure {
-    justify-content: flex-start;
+  .compare-mobile .atlas-rating.is-stacked .atlas-rating-rule {
+    display: none;
+  }
+
+  .compare-mobile .atlas-rating.is-stacked .atlas-rating-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .compare-mobile .atlas-rating.is-stacked .atlas-rating-score {
@@ -1418,8 +1571,8 @@
     letter-spacing: 0.03em;
   }
 
-  .atlas-rating-body {
-    flex-wrap: wrap;
+  .match .atlas-rating-body {
+    align-items: flex-start;
   }
 
   .disclosure {

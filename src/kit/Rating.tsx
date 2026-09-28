@@ -36,16 +36,21 @@ export function Rating({
       className={cn("atlas-rating", compact && "is-compact", stacked && "is-stacked")}
       aria-label={`${figure} out of 10${label ? `, ${label}` : ""}`}
     >
-      <span className="atlas-rating-figure">
-        <span className="atlas-rating-score num">{figure}</span>
+      <span className="atlas-rating-score num">{figure}</span>
+      <span className="atlas-rating-rule" aria-hidden />
+      <span className="atlas-rating-body">
         <span className="atlas-rating-stars" aria-hidden>
           <Stars filled={false} />
           <span className="atlas-rating-clip" style={{ width: `${(fill / 5) * 100}%` }}>
             <Stars filled />
           </span>
         </span>
+        {label ? (
+          <span className="atlas-rating-line">
+            <span className="atlas-rating-label">{label}</span>
+          </span>
+        ) : null}
       </span>
-      {label ? <span className="atlas-rating-label">{label}</span> : null}
     </div>
   );
 }

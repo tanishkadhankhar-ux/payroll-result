@@ -1,8 +1,8 @@
 export type Partner = {
   id: string;
   name: string;
-  score: number;
-  stars: number;
+  score: number | null;
+  stars: number | null;
   verdict: string;
   badge: string;
   badgeTone: "editorial" | "accent";
@@ -11,6 +11,7 @@ export type Partner = {
   fitLabel: string;
   highlight: string;
   check: string;
+  checks: string[];
   columnLabel: string;
   tablePrice: string;
   offer: string;
@@ -27,7 +28,6 @@ export const hero = {
 
 export const voice = {
   title: "What 5 out of 5 means",
-  lead: "You told us → Here’s why we matched you.",
   body: "Your top match covers all 5 needs you named. A lower score means it covers fewer of your stated needs.",
 };
 
@@ -69,38 +69,25 @@ export const needs = {
 
 export const partners: Partner[] = [
   {
-    id: "surepayroll",
-    name: "SurePayroll",
-    score: 9.9,
-    stars: 5,
-    verdict: "Outstanding",
-    badge: "Your match",
-    badgeTone: "editorial",
-    ribbonAside: "Best for small teams",
-    price: "From $29.99/mo + $8/mo per person",
-    fitLabel: "100% fit",
-    highlight: "Highlighted for 1 of your 1 needs",
-    check: "Ideal for small businesses with 1–9 employees",
-    columnLabel: "Best fit for your answers",
-    tablePrice: "From $7/person a month + $29 base",
-    offer: "No offer listed",
-    offerMuted: true,
-    teamFit: "Ideal for small businesses with 1–9 employees",
-    teamMet: true,
-  },
-  {
     id: "gusto",
     name: "Gusto",
     score: 9.5,
     stars: 5,
     verdict: "Very good",
-    badge: "Best for HR and benefits",
-    badgeTone: "accent",
+    badge: "Your match",
+    badgeTone: "editorial",
     ribbonAside: "Best for HR and benefits",
     price: "From $49/mo + $6/mo per person",
     fitLabel: "Strong fit",
     highlight: "Highlighted for HR and benefits",
     check: "First month of payroll free",
+    checks: [
+      "First month of payroll free",
+      "Automatic tax filing and compliance guidance",
+      "Easy new-hire onboarding, including self-onboarding mid-year",
+      "Built for 10–50 employees, with packages up to 250",
+      "Contractor payments in 120 countries",
+    ],
     columnLabel: "Best for HR and benefits",
     tablePrice: "From $6/person a month + $49 base",
     offer: "First month of payroll free",
@@ -113,17 +100,48 @@ export const partners: Partner[] = [
     score: 9.4,
     stars: 4.7,
     verdict: "Very good",
-    badge: "Best all-rounder",
+    badge: "Best for HR and benefits",
     badgeTone: "accent",
     ribbonAside: "Best all-rounder",
     price: "From $59/mo + $8/mo per person",
     fitLabel: "Strong fit",
     highlight: "Highlighted as a balanced all-rounder",
     check: "3 months free",
+    checks: [
+      "3 months free",
+      "Tax calculations and withholdings",
+      "Pay stubs, reports and documents in one place",
+      "Built for 10–200 employees",
+      "International contractors, at extra cost",
+    ],
     columnLabel: "Best all-rounder",
     tablePrice: "From $8/person a month + $50 base",
     offer: "3 months free",
     teamFit: "Built for 10–200 employees",
+    teamMet: false,
+  },
+  {
+    id: "paychex",
+    name: "Paychex",
+    score: null,
+    stars: null,
+    verdict: "",
+    badge: "Best all-rounder",
+    badgeTone: "accent",
+    ribbonAside: "Best for a custom quote",
+    price: "Custom quote",
+    fitLabel: "3/5 priorities",
+    highlight: "Quote-based alternative",
+    check: "3 months free payroll",
+    checks: [
+      "3 months free payroll",
+      "Run on desktop or mobile",
+      "Suited to teams of around 20",
+    ],
+    columnLabel: "Best for a custom quote",
+    tablePrice: "Quote required",
+    offer: "3 months free payroll",
+    teamFit: "Suited to teams of around 20",
     teamMet: false,
   },
 ];
