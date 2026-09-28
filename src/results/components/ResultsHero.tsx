@@ -3,7 +3,8 @@ import { Button } from "@/kit/Button";
 import { hero, needs } from "@/results/data";
 
 export function ResultsHero({ onPricing }: { onPricing: () => void }) {
-  const needLabel = needs.covered === 1 ? "need" : "needs";
+  const covered = Number(needs.covered);
+  const needLabel = covered === 1 ? "need" : "needs";
 
   return (
     <section className="welcome" aria-labelledby="welcome-title">
@@ -11,7 +12,7 @@ export function ResultsHero({ onPricing }: { onPricing: () => void }) {
       <h1 id="welcome-title">{hero.title}</h1>
       <p className="welcome-lead">{hero.lead}</p>
       <p className="welcome-cover">
-        SurePayroll covers all {needs.covered} {needLabel} you named.
+        SurePayroll covers all {covered} {needLabel} you named.
       </p>
       <Button variant="primary" className="welcome-pricing" onClick={onPricing}>
         Get SurePayroll pricing
